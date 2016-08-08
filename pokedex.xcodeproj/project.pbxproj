@@ -102,9 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				F9AB87171D5883FA00C9D988 /* csv.swift */,
-				F9AB871C1D5888F400C9D988 /* pokemon1.ttf */,
-				F9AB871D1D5888F400C9D988 /* pokemon2.ttf */,
-				F9AB87121D587A4900C9D988 /* music.mp3 */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -120,6 +117,9 @@
 		F9AB871B1D58844700C9D988 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F9AB871C1D5888F400C9D988 /* pokemon1.ttf */,
+				F9AB871D1D5888F400C9D988 /* pokemon2.ttf */,
+				F9AB87121D587A4900C9D988 /* music.mp3 */,
 				F9AB870D1D58758E00C9D988 /* pokemon.csv */,
 			);
 			name = Resources;

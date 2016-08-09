@@ -29,7 +29,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         searchBar.returnKeyType = UIReturnKeyType.Done
         searchBar.enablesReturnKeyAutomatically = false
-       // initAudo()
+        //initAudo()
         parsePokemonCSV()
     }
     
@@ -83,6 +83,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        var pokemon = self.pokemon[indexPath.row]
+        
+        if isSearching{
+            pokemon = self.filteredPokemon[indexPath.row]
+        }
+        performSegueWithIdentifier("PokemonDetailVC", sender: pokemon)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -127,7 +133,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collection.reloadData()
     }
 
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PokemonDetailVC" {
+            if let detailsVC = segue.destinationViewController as? PokemonDetailVC {
+                if let pokemon = sender as? Pokemon {
+                    detailsVC.pokemon = pokemon
+                }
+            }
+        }
+    }
     
     
 

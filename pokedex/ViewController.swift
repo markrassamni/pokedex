@@ -29,7 +29,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         searchBar.returnKeyType = UIReturnKeyType.Done
         searchBar.enablesReturnKeyAutomatically = false
-        //initAudo()
+        initAudo()
         parsePokemonCSV()
     }
     

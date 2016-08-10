@@ -24,6 +24,10 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var currentEvo: UIImageView!
     @IBOutlet weak var nextEvo: UIImageView!
     @IBOutlet weak var evoLbl: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var evoArrow: UIImageView!
+    @IBOutlet var hiddenLabels: [UILabel]!
+    @IBOutlet weak var grayBar: UIView!
     
     
     
@@ -35,10 +39,37 @@ class PokemonDetailVC: UIViewController {
         
         nameLbl.text = pokemon.name.capitalizedString
         mainImg.image = UIImage(named: "\(pokemon.pokedexId)")
+        currentEvo.image = mainImg.image
+        
         
         pokemon.downloadPokemonDetails { () -> () in
-            
+            self.updateUI()
         }
+    }
+    
+    func updateUI(){
+        
+        descLbl.text = pokemon.desc
+        typeLbl.text = pokemon.type
+        idLbl.text = "\(pokemon.pokedexId)"
+        attackLbl.text = pokemon.attack
+        defenseLbl.text = pokemon.defense
+        heightLbl.text = pokemon.height
+        weightLbl.text = pokemon.weight
+        //currentEvo.image = UIImage(named: "\(pokemon.pokedexId)")
+        if "\(pokemon.nextEvoId)" == "\(pokemon.pokedexId + 1)" {
+            nextEvo.image = UIImage(named: "\(pokemon.nextEvoId)")
+            evoLbl.text = "Next Evolution: \(pokemon.nextEvoText) at level \(pokemon.nextEvoLvl)"
+            nextEvo.hidden = false
+            evoArrow.hidden = false
+        } else {
+            evoLbl.text = "Final Evolution"
+        }
+        for label in hiddenLabels {
+            label.hidden = false
+        }
+        grayBar.hidden = false
+        loadingIndicator.hidden = true
     }
 
     @IBAction func backPressed(sender: AnyObject) {
